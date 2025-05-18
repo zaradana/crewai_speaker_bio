@@ -16,12 +16,12 @@ from src.speaker_introduction.crew import SpeakerIntroductionCrew
 
 def run():
     """
-    Run the crew.
+    Run the crew with specified inputs.
     """
     parser = argparse.ArgumentParser(description="Run the Speaker Introduction Crew with specified inputs.")
-    parser.add_argument("--speaker_name", type=str, default="João Moura", help="Name of the speaker")
-    parser.add_argument("--company_name", type=str, default="CrewAI", help="Name of the company")
-    parser.add_argument("--event_context", type=str, default="AI Tinkerers Hackathon", help="Context of the event")
+    parser.add_argument("--speaker_name", type=str, required=True, help="Name of the speaker")
+    parser.add_argument("--company_name", type=str, required=True, help="Name of the company")
+    parser.add_argument("--event_context", type=str, required=True, help="Context of the event")
 
     args = parser.parse_args()
 
@@ -31,11 +31,13 @@ def run():
         "event_context": args.event_context,
     }
 
-    # Create a new crew instance each time to avoid tool assignment issues
-    crew_instance = SpeakerIntroductionCrew().crew()
-    result = crew_instance.kickoff(inputs=inputs)
-    print("\n=== FINAL RESULT ===\n")
-    print(result)
+    try:
+        crew_instance = SpeakerIntroductionCrew().crew()
+        result = crew_instance.kickoff(inputs=inputs, verbose=False)
+        return result
+    except Exception as e:
+        print(f"An error occurred while running the crew: {e}")
+        exit(1)
 
 
 def train():
