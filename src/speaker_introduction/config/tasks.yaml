@@ -7,9 +7,12 @@ summary_task:
     As a manager agent, summarize and integrate all information from other agents into a 
     comprehensive report.
 
-    Speaker: {speaker_name}
-    Company: {company_name}
-    Event: {event_name}
+    Speaker: {speaker}
+    Company: {company}
+    Event: {event}
+    Speaker Introduction: {speaker_introduction}
+    Company Showcase: {company_showcase}
+
 
   expected_output: >
     Summaries that integrate speaker backgrounds, company highlights. 
@@ -24,9 +27,9 @@ speaker_introduction_task:
     expertise and set the tone for their presentation.
 
     Include details from prior interactions or known preferences where applicable.
-    Speaker: {speaker_name}
-    Company: {company_name}
-    Event: {event_name}
+    Speaker: {speaker}
+    Company: {company}
+    Event: {event}
 
   expected_output: >
     Professionally written introductions for each speaker, including a brief
@@ -41,8 +44,8 @@ company_showcase_task:
     Ensure each presentation matches the event context. Include a link to the company
     and its products. 
 
-    Company: {company_name}
-    Event: {event_name}
+    Company: {company}
+    Event: {event}
 
   expected_output: >
     Clear, compelling company presentations for each speaker's organization, including

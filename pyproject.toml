@@ -14,9 +14,6 @@ dependencies = [
 [project.scripts]
 speaker_introduction = "speaker_introduction.main:run"
 run_crew = "speaker_introduction.main:run"
-train = "speaker_introduction.main:train"
-replay = "speaker_introduction.main:replay"
-test = "speaker_introduction.main:test"
 
 [build-system]
 requires = [
