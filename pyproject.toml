@@ -1,5 +1,5 @@
 [project]
-name = "prep_for_meeting"
+name = "speaker_introduction"
 version = "0.1.0"
 description = "prep-for-meeting using crewAI"
 authors = [
@@ -11,14 +11,17 @@ dependencies = [
 ]
 
 [project.scripts]
-prep_for_meeting = "prep_for_meeting.main:run"
-run_crew = "prep_for_meeting.main:run"
-train = "prep_for_meeting.main:train"
-replay = "prep_for_meeting.main:replay"
-test = "prep_for_meeting.main:test"
+speaker_introduction = "speaker_introduction.main:run"
+run_crew = "speaker_introduction.main:run"
+train = "speaker_introduction.main:train"
+replay = "speaker_introduction.main:replay"
+test = "speaker_introduction.main:test"
 
 [build-system]
 requires = [
     "hatchling",
 ]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/speaker_introduction"]

@@ -37,19 +37,12 @@ class SpeakerIntroductionCrew:
             verbose=True,
         )
 
-    @agent
-    def link_sharing_agent(self) -> Agent:
-        return Agent(
-            config=self.agents_config["link_sharing_agent"],
-            tools=[SerperDevTool(), ScrapeWebsiteTool()],
-            verbose=True,
-        )
-
     @task
     def speaker_introduction_task(self) -> Task:
         return Task(
             config=self.tasks_config["speaker_introduction_task"],
             agent=self.speaker_introduction_agent(),
+            output_key="speaker_introductions"
         )
 
     @task
@@ -57,28 +50,35 @@ class SpeakerIntroductionCrew:
         return Task(
             config=self.tasks_config["company_showcase_task"],
             agent=self.company_showcase_agent(),
+            output_key="product_pitches"
         )
 
-    @task
-    def link_sharing_task(self) -> Task:
-        return Task(
-            config=self.tasks_config["link_sharing_task"],
-            agent=self.link_sharing_agent(),
-        )
+
 
     @task
     def summary_task(self) -> Task:
         return Task(
             config=self.tasks_config["summary_task"],
             agent=self.manager_agent(),
+            context=[
+                self.speaker_introduction_task(),
+                self.company_showcase_task(),
+            ]
         )
 
     @crew
     def crew(self) -> Crew:
         """Creates a Speaker Introduction Crew"""
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=[
+                self.speaker_introduction_agent(),
+                self.company_showcase_agent(),
+            ],
+            tasks=[
+                self.speaker_introduction_task(),
+                self.company_showcase_task(),
+                self.summary_task()
+            ],
             process=Process.hierarchical,
             manager_agent=self.manager_agent(),
             verbose=True,

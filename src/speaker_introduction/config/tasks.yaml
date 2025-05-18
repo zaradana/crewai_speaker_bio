@@ -1,6 +1,25 @@
+summary_task:
+  description: >
+    Create event summaries by combining outputs from speaker introductions, and compnay showcases. 
+    Capture key points of each speaker, highlight product offerings, and include relevant links 
+    for audience engagement.
+
+    As a manager agent, summarize and integrate all information from other agents into a 
+    comprehensive report.
+
+    Speaker: {speaker_name}
+    Company: {company_name}
+    Event: {event_context}
+
+  expected_output: >
+    Summaries that integrate speaker backgrounds, product highlights, and relevant links into a 
+    single document or script. The summaries should be informative and flow seamlessly 
+    from one topic to the next, ready for presentation or delivery. 
+
+
 speaker_introduction_task:
   description: >
-    Craft personalized speaker introductions, including each speaker’s background,
+    Craft personalized speaker introductions, including each speaker's background,
     achievements, and speaking topics. Ensure the introductions capture the speaker's
     expertise and set the tone for their presentation.
 
@@ -19,48 +38,14 @@ company_showcase_task:
   description: >
     Prepare concise and impactful company presentations for each speaker or company,
     highlighting their key offerings, unique selling points, and real-world impact.
-    Ensure each presentation is personalized based on the audience profile and event context.
+    Ensure each presentation matches the event context. Include a link to the company
+    and its products. 
 
     Company: {company_name}
     Event: {event_context}
 
   expected_output: >
-    Clear, compelling company presentations for each speaker’s organization, including
+    Clear, compelling company presentations for each speaker's organization, including
     key features, benefits, and differentiators. Each presentation should be concise
-    yet informative, tailored to the audience's interests and the event’s theme.
-
-
-link_sharing_task:
-  description: >
-    Generate and organize relevant links for each speaker and their companies,
-    including company products, product pages, demos, and related resources.
-    Ensure links are contextually appropriate and easy to access during the event.
-
-    Consider prior interactions and known audience interests.
-    Speaker: {speaker_name}
-    Company: {company_name}
-    Event: {event_context}
-
-  expected_output: >
-    A list of ready-to-share links, including product demos, speaker profiles,
-    and relevant resources. Each link should include a short, context-appropriate
-    description to guide the audience towards the intended action.
-
-summary_task:
-  description: >
-    Combine the outputs from the speaker introductions, product showcases, and link sharing tasks
-    to create cohesive event summaries. Ensure the summaries capture the key points of each speaker,
-    highlight their product offerings, and include relevant links for audience engagement.
-
-    Use inputs from:
-    - Speaker Introductions: {speaker_introductions}
-    - Product Pitches: {product_pitches}
-    - Link Lists: {link_lists}
-
-    Event Context: {event_context}
-
-  expected_output: >
-    Comprehensive summaries that integrate the speaker backgrounds, product highlights,
-    and relevant links into a single, polished document or script. The summaries should
-    be engaging, informative, and seamlessly flow from one topic to the next, ready for
-    live presentation or scripted delivery.
+    yet informative, tailored to the audience's interests and the event's theme.
+    Include a link to the company or its products. 
