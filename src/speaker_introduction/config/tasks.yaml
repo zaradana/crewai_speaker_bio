@@ -1,11 +1,9 @@
 summary_task:
   description: >
-    Create event summaries by combining outputs from speaker introductions, and compnay showcases. 
-    Capture key points of each speaker, highlight company offerings, and include relevant links 
-    for audience engagement.
+    Combine speaker introductions and company showcases into concise event summaries. 
+    Highlight key speaker points, company offerings, and include relevant links.
 
-    As a manager agent, summarize and integrate all information from other agents into a 
-    comprehensive report.
+    As a manager agent, integrate all information into a concise report.
 
     Speaker: {speaker}
     Company: {company}
@@ -13,11 +11,9 @@ summary_task:
     Speaker Introduction: {speaker_introduction}
     Company Showcase: {company_showcase}
 
-
   expected_output: >
-    Summaries that integrate speaker backgrounds, company highlights. 
-    The summaries should be informative and flow seamlessly 
-    from one topic to the next, ready for presentation or delivery. 
+    Concise summaries integrating speaker backgrounds and company highlights, 
+    flowing seamlessly for presentation or delivery.
 
 
 speaker_introduction_task:
