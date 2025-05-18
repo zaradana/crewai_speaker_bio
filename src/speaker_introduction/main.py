@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 from src.speaker_introduction.flow import (
     SpeakerIntroductionFlow,
@@ -9,6 +10,7 @@ from src.speaker_introduction.flow import (
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/introduce', methods=['POST'])
 def introduce():
