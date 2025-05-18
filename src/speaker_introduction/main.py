@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import argparse
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 from src.speaker_introduction.flow import (
     SpeakerIntroductionFlow,
@@ -8,38 +8,32 @@ from src.speaker_introduction.flow import (
 
 load_dotenv()
 
+app = Flask(__name__)
 
-def run_crew():
+@app.route('/introduce', methods=['POST'])
+def introduce():
     """
-    Run the traditional crew implementation.
+    Endpoint to run the Speaker Introduction Crew.
     """
-    parser = argparse.ArgumentParser(
-        description="Run the Speaker Introduction Crew with specified inputs."
-    )
-    parser.add_argument(
-        "--speaker", type=str, required=True, help="Name of the speaker"
-    )
-    parser.add_argument(
-        "--company", type=str, required=True, help="Name of the company"
-    )
-    parser.add_argument(
-        "--event", type=str, required=True, help="Name of the event"
-    )
+    data = request.json
+    speaker = data.get('speaker')
+    company = data.get('company')
+    event = data.get('event')
 
-    args = parser.parse_args()
+    if not speaker or not company or not event:
+        return jsonify({"error": "Missing required fields: speaker, company, and event"}), 400
 
     # Create a new crew instance each time to avoid tool assignment issues
     flow = SpeakerIntroductionFlow()
     # Set the flow state before kickoff
     flow.set_state(SpeakerIntroductionState(
-        speaker=args.speaker,
-        company=args.company,
-        event=args.event,
+        speaker=speaker,
+        company=company,
+        event=event,
     ))
     result = flow.kickoff()
 
-    return result.final_introduction
-   
+    return jsonify({"introduction": result.final_introduction})
 
 if __name__ == "__main__":
-    run_crew()
+    app.run(debug=True)
