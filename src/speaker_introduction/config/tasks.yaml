@@ -1,7 +1,7 @@
 summary_task:
   description: >
     Create event summaries by combining outputs from speaker introductions, and compnay showcases. 
-    Capture key points of each speaker, highlight product offerings, and include relevant links 
+    Capture key points of each speaker, highlight company offerings, and include relevant links 
     for audience engagement.
 
     As a manager agent, summarize and integrate all information from other agents into a 
@@ -12,8 +12,8 @@ summary_task:
     Event: {event_name}
 
   expected_output: >
-    Summaries that integrate speaker backgrounds, product highlights, and relevant links into a 
-    single document or script. The summaries should be informative and flow seamlessly 
+    Summaries that integrate speaker backgrounds, company highlights. 
+    The summaries should be informative and flow seamlessly 
     from one topic to the next, ready for presentation or delivery. 
 
 
