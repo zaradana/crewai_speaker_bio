@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 import sys
+from dotenv import load_dotenv
 import argparse
-import os
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-SERPER_API_KEY = os.getenv("SERPER_API_KEY")
+load_dotenv()
 
 from src.speaker_introduction.crew import SpeakerIntroductionCrew
 
@@ -16,28 +15,27 @@ from src.speaker_introduction.crew import SpeakerIntroductionCrew
 
 def run():
     """
-    Run the crew with specified inputs.
+    Run the crew.
     """
     parser = argparse.ArgumentParser(description="Run the Speaker Introduction Crew with specified inputs.")
-    parser.add_argument("--speaker_name", type=str, required=True, help="Name of the speaker")
-    parser.add_argument("--company_name", type=str, required=True, help="Name of the company")
-    parser.add_argument("--event_context", type=str, required=True, help="Context of the event")
+    parser.add_argument("--speaker-name", type=str, required=True, help="Name of the speaker")
+    parser.add_argument("--company-name", type=str, required=True, help="Name of the company")
+    parser.add_argument("--event-name", type=str, required=True, help="Name of the event")
 
     args = parser.parse_args()
 
     inputs = {
         "speaker_name": args.speaker_name,
         "company_name": args.company_name,
-        "event_context": args.event_context,
+        "event_name": args.event_name,
     }
 
-    try:
-        crew_instance = SpeakerIntroductionCrew().crew()
-        result = crew_instance.kickoff(inputs=inputs, verbose=False)
-        return result
-    except Exception as e:
-        print(f"An error occurred while running the crew: {e}")
-        exit(1)
+    # Create a new crew instance each time to avoid tool assignment issues
+    crew_instance = SpeakerIntroductionCrew().crew()
+    result = crew_instance.kickoff(inputs=inputs)
+    print("\n=== FINAL RESULT ===\n")
+    print(result)
+    return result
 
 
 def train():

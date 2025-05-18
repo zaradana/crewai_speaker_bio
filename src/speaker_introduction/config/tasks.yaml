@@ -9,7 +9,7 @@ summary_task:
 
     Speaker: {speaker_name}
     Company: {company_name}
-    Event: {event_context}
+    Event: {event_name}
 
   expected_output: >
     Summaries that integrate speaker backgrounds, product highlights, and relevant links into a 
@@ -26,7 +26,7 @@ speaker_introduction_task:
     Include details from prior interactions or known preferences where applicable.
     Speaker: {speaker_name}
     Company: {company_name}
-    Event: {event_context}
+    Event: {event_name}
 
   expected_output: >
     Professionally written introductions for each speaker, including a brief
@@ -42,7 +42,7 @@ company_showcase_task:
     and its products. 
 
     Company: {company_name}
-    Event: {event_context}
+    Event: {event_name}
 
   expected_output: >
     Clear, compelling company presentations for each speaker's organization, including

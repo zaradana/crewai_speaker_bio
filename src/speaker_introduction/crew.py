@@ -50,7 +50,7 @@ class SpeakerIntroductionCrew:
         return Task(
             config=self.tasks_config["company_showcase_task"],
             agent=self.company_showcase_agent(),
-            output_key="product_pitches"
+            output_key="company_showcase"
         )
 
 
